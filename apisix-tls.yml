@@ -1,0 +1,10 @@
+apiVersion: apisix.apache.org/v2
+kind: ApisixTls
+metadata:
+  name: localhttp-tls
+spec:
+  hosts:
+    - example.com
+  secret:
+    name: example-secret
+    namespace: default
