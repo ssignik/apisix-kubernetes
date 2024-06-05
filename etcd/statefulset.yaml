@@ -94,7 +94,7 @@ spec:
             - name: ETCD_INITIAL_CLUSTER_STATE
               value: "new"
             - name: ETCD_INITIAL_CLUSTER
-              value: "apisix-etcd-0=http://apisix-etcd-0.apisix-etcd-headless.ingress-apisix.svc.cluster.local:2380,apisix-etcd-1=http://apisix-etcd-1.apisix-etcd-headless.ingress-apisix.svc.cluster.local:2380,apisix-etcd-2=http://apisix-etcd-2.apisix-etcd-headless.default.svc.cluster.local:2380"
+              value: "apisix-etcd-0=http://apisix-etcd-0.apisix-etcd-headless.ingress-apisix.svc.cluster.local:2380,apisix-etcd-1=http://apisix-etcd-1.apisix-etcd-headless.ingress-apisix.svc.cluster.local:2380,apisix-etcd-2=http://apisix-etcd-2.apisix-etcd-headless.ingress-apisix.svc.cluster.local:2380"
             - name: ETCD_CLUSTER_DOMAIN
               value: "apisix-etcd-headless.ingress-apisix.svc.cluster.local"
           envFrom:
