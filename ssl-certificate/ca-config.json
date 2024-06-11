@@ -1,0 +1,19 @@
+{
+    "signing": {
+        "default": {
+            "expiry": "168h"
+        },
+        "profiles": {
+            "apisix": {
+                "expiry": "99999h",
+                "usages": [
+                    "signing",
+                    "key encipherment",
+		            "server auth",
+                    "client auth"
+                ]
+            }
+        }
+    }
+}
+

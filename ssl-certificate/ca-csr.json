@@ -1,0 +1,17 @@
+{
+    "CN": "apisix",
+    "key": {
+        "algo": "rsa",
+        "size": 2048
+    },
+    "names": [
+        {
+            "C": "CN",
+            "L": "ShangHai",
+            "ST": "ShangHai",
+	        "O": "apisix",
+	        "OU": "gateway"
+        }
+    ]
+}
+

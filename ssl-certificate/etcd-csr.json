@@ -1,0 +1,23 @@
+{
+  "CN": "apisix-etcd",
+  "hosts": [
+    "127.0.0.1",
+    "etcd.ingress-apisix.svc.cluster.local",
+    "etcd-0.etcd-headless.ingress-apisix.svc.cluster.local",
+    "etcd-1.etcd-headless.ingress-apisix.svc.cluster.local",
+    "etcd-2.etcd-headless.ingress-apisix.svc.cluster.local"
+  ],
+  "key": {
+    "algo": "rsa",
+    "size": 2048
+  },
+  "names": [
+    {
+      "C": "CN",
+      "ST": "Shanghai",
+      "L": "Shanghai",
+      "O": "apisix",
+      "OU": "gateway"
+    }
+  ]
+}
