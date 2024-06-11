@@ -36,6 +36,10 @@ data:
         prefix: "/apisix"
         endpoints:
           - apisix-etcd:2379
+        mtls:
+          key_file: "/usr/local/apisix-dashboard/cert/etcd-key.pem"
+          cert_file: "/usr/local/apisix-dashboard/cert/etcd.pem"
+          ca_file: "/usr/local/apisix-dashboard/cert/ca.pem"
       log:
         error_log:
           level: warn

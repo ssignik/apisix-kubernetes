@@ -69,7 +69,12 @@ spec:
             - mountPath: /usr/local/apisix-dashboard/conf/conf.yaml
               name: apisix-dashboard-config
               subPath: conf.yaml
+            - mountPath: /usr/local/apisix-dashboard/cert
+              name: etcd-tls
       volumes:
         - configMap:
             name: apisix-dashboard
           name: apisix-dashboard-config
+        - configMap:
+            name: etcd-tls-config
+          name: etcd-tls

@@ -107,6 +107,7 @@ data:
             enable_http3: false
         ssl_protocols: "TLSv1.2 TLSv1.3"
         ssl_ciphers: "ECDHE-ECDSA-AES128-GCM-SHA256:ECDHE-RSA-AES128-GCM-SHA256:ECDHE-ECDSA-AES256-GCM-SHA384:ECDHE-RSA-AES256-GCM-SHA384:ECDHE-ECDSA-CHACHA20-POLY1305:ECDHE-RSA-CHACHA20-POLY1305:DHE-RSA-AES128-GCM-SHA256:DHE-RSA-AES256-GCM-SHA384:DHE-RSA-CHACHA20-POLY1305:ECDHE-ECDSA-AES128-SHA256:ECDHE-RSA-AES128-SHA256:ECDHE-ECDSA-AES128-SHA:ECDHE-RSA-AES128-SHA:ECDHE-ECDSA-AES256-SHA384:ECDHE-RSA-AES256-SHA384:ECDHE-ECDSA-AES256-SHA:ECDHE-RSA-AES256-SHA:DHE-RSA-AES128-SHA256:DHE-RSA-AES256-SHA256:AES128-GCM-SHA256:AES256-GCM-SHA384:AES128-SHA256:AES256-SHA256:AES128-SHA:AES256-SHA:DES-CBC3-SHA"
+        ssl_trusted_certificate: "/usr/local/apisix/cert/etcd/ca.pem"
       data_encryption:
         enable_encrypt_fields: false
         keyring:
@@ -160,8 +161,19 @@ data:
           - name: "viewer"
             key: 995398bddea7a4df9af5f70095cb3e94
             role: viewer
+        https_admin: true
+        
+        admin_api_mtls:             # Set this if `https_admin` is true.
+          admin_ssl_cert: "/usr/local/apisix/cert/admin/apisix.pem"        # Set path to SSL/TLS certificate.
+          admin_ssl_cert_key: "/usr/local/apisix/cert/admin/apisix-key.pem"    # Set path to SSL/TLS key.
+          admin_ssl_ca_cert: "/usr/local/apisix/cert/admin/ca.pem"     # Set path to CA certificate used to sign client certificates.
       etcd:
         host:                          # it's possible to define multiple etcd hosts addresses of the same etcd cluster.
-          - "http://apisix-etcd.ingress-apisix.svc.cluster.local:2379"
+          - "https://apisix-etcd.ingress-apisix.svc.cluster.local:2379"
         prefix: "/apisix"    # configuration prefix in etcd
         timeout: 30    # 30 seconds
+        tls:
+          cert: "/usr/local/apisix/cert/etcd/etcd.pem"
+          key: "/usr/local/apisix/cert/etcd/etcd-key.pem"
+          verify: true
+

@@ -76,6 +76,10 @@ spec:
             - mountPath: /usr/local/apisix/conf/config.yaml
               name: apisix-config
               subPath: config.yaml
+            - mountPath: /usr/local/apisix/cert/admin
+              name: apisix-tls
+            - mountPath: /usr/local/apisix/cert/etcd
+              name: etcd-tls
           resources:
             {}
       hostNetwork: false
@@ -87,3 +91,9 @@ spec:
         - configMap:
             name: apisix
           name: apisix-config
+        - configMap:
+            name: etcd-tls-config
+          name: etcd-tls
+        - configMap:
+            name: apisix-tls-config
+          name: apisix-tls

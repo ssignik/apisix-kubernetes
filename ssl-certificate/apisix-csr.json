@@ -1,0 +1,20 @@
+{
+  "CN": "apisix",
+    "hosts": [
+      "127.0.0.1",
+      "apisix-admin.ingress-apisix.svc.cluster.local"
+    ],
+  "key": {
+    "algo": "rsa",
+    "size": 2048
+  },
+  "names": [
+    {
+      "C": "CN",
+      "ST": "Shanghai",
+      "L": "Shanghai",
+      "O": "apisix",
+      "OU": "gateway"
+    }
+  ]
+}

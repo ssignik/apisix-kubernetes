@@ -22,8 +22,8 @@ data:
     # log options
     log_level: "info"
     log_output: "stderr"
-    cert_file: "/etc/webhook/certs/cert.pem"
-    key_file: "/etc/webhook/certs/key.pem"
+    # cert_file: "/etc/webhook/certs/cert.pem"
+    # key_file: "/etc/webhook/certs/key.pem"
     http_listen: ":8080"
     https_listen: ":8443"
     ingress_publish_service: ""
@@ -44,7 +44,7 @@ data:
       apisix_version: "apisix.apache.org/v2"
     apisix:
       admin_api_version: "v3"
-      default_cluster_base_url: http://apisix-admin.ingress-apisix.svc.cluster.local:9180/apisix/admin
+      default_cluster_base_url: https://apisix-admin.ingress-apisix.svc.cluster.local:9180/apisix/admin
       default_cluster_admin_key: "61908c436e12301eccb302e829d941d7"
       default_cluster_name: "default"
     
