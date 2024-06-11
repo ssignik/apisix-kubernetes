@@ -1,0 +1,23 @@
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: traffic-limit-ingress
+  annotations:
+    k8s.apisix.apache.org/plugin-config-name: "traffic-limit"
+spec:
+  ingressClassName: apisix
+  rules:
+    - host: www.example.com
+      http:
+        paths:
+          - path: /
+            pathType: Prefix
+            backend:
+              service:
+                name: httpbin
+                port: 
+                  number: 80
+
+##test
+##curl --resolve "www.example.com:32106:192.168.49.2" "http://www.example.com:32106/ip"
+##超过3次 提示503

@@ -1,0 +1,11 @@
+apiVersion: apisix.apache.org/v2
+kind: ApisixPluginConfig
+metadata:
+  name: deny-admin
+spec:
+  plugins:
+  - name: uri-blocker
+    enable: true
+    config:
+      block_rules: ["^/admin"]
+      rejected_code: 500

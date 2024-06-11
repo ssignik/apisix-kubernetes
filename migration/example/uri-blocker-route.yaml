@@ -1,0 +1,16 @@
+apiVersion: apisix.apache.org/v2
+kind: ApisixRoute
+metadata:
+  name: uri-blocker-route
+spec:
+  http:
+  - name: example
+    match:
+      hosts:
+      - example.com
+      paths:
+      - /
+    backends:
+      - serviceName: httpbin
+        servicePort: 80
+    plugin_config_name: deny-admin

@@ -1,0 +1,23 @@
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: uri-blocker-ingress
+  annotations:
+    k8s.apisix.apache.org/plugin-config-name: "deny-admin"
+spec:
+  ingressClassName: apisix
+  rules:
+    - host: example.com
+      http:
+        paths:
+          - path: /
+            pathType: Prefix
+            backend:
+              service:
+                name: httpbin
+                port: 
+                  number: 80
+
+##test
+##curl -ikv --resolve "example.com:32106:192.168.49.2" "http://example.com:32106/admin"
+##返回500响应

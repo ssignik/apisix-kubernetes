@@ -1,0 +1,19 @@
+apiVersion: apisix.apache.org/v2
+kind: ApisixPluginConfig
+metadata:
+  name: traffic-limit
+spec:
+  plugins:
+  - name: limit-req
+    enable: true
+    config:
+      rate: 3 
+      burst: 0 
+      key: "server_addr"
+  - name: limit-conn
+    enable: true
+    config:
+      conn: 3
+      burst: 0
+      default_conn_delay: 0.1
+      key: "server_addr"

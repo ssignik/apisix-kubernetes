@@ -1,0 +1,23 @@
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: 301-redirect-ingress
+  annotations:
+    k8s.apisix.apache.org/plugin-config-name: "301-redirect"
+spec:
+  ingressClassName: apisix
+  rules:
+    - host: www.example.com
+      http:
+        paths:
+          - path: /
+            pathType: Prefix
+            backend:
+              service:
+                name: httpbin
+                port: 
+                  number: 80
+
+##test
+##curl -ikv --resolve "www.example.com:30316:192.168.49.2" "https://www.example.com:30316/ip"
+##正常获取IP

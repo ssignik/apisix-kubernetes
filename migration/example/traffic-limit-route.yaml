@@ -1,0 +1,16 @@
+apiVersion: apisix.apache.org/v2
+kind: ApisixRoute
+metadata:
+  name: traffic-limit-route
+spec:
+  http:
+  - name: example
+    match:
+      hosts:
+      - www.example.com
+      paths:
+      - /*
+    backends:
+      - serviceName: httpbin
+        servicePort: 80
+    plugin_config_name: traffic-limit

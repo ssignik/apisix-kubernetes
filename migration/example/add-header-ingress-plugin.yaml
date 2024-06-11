@@ -1,0 +1,23 @@
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: add-header-ingress
+  annotations:
+    k8s.apisix.apache.org/plugin-config-name: "add-header"
+spec:
+  ingressClassName: apisix
+  rules:
+    - host: example.com
+      http:
+        paths:
+          - path: /
+            pathType: Prefix
+            backend:
+              service:
+                name: httpbin
+                port: 
+                  number: 80
+
+##test
+##curl -i --resolve "example.com:32106:192.168.49.2" "http://example.com:32106/get"
+##查看header           
