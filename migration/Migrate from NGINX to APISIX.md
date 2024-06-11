@@ -1,7 +1,24 @@
 APISIX 迁移文档
+
 该文档主要针对当前网关ingress-nginx-controller迁移到ingress-apisix-controller实施方案
+
+说明：
+
+ingress-代表kubernetes原生ingress资源
+
+crd-代表apisix自定义路由相关对象资源
+
+annotation-通过注解实现功能
+
+plugin-通过自定义插件资源实现功能
+
+在额外功能下，有些功能只通过注解无法迁移，就需要通过apisixpluginconfig对象引用插件到ingress资源中来实现，同时也可以通过ApisixRoute等自定义资源对象引用插件配置来实现
 ## 基础功能清单
+1. route - 路由
+2. https - 证书加密
+
 1.route
+
 1.a ingress
 ```
 apiVersion: networking.k8s.io/v1
@@ -26,7 +43,8 @@ spec:
                   number: 80
 ```
 1.b apisixroute
-注意：apisixroute的path如果没有*就默认是精确匹配Exact:/不匹配/admin，如果需要前缀匹配，先使用/*
+
+注意：apisixroute的path如果没有\*就默认是精确匹配Exact 例如: "/"不匹配"/admin"，如果需要前缀匹配，先使用/\*
 ```
 apiVersion: apisix.apache.org/v2
 kind: ApisixRoute
@@ -45,8 +63,11 @@ spec:
       servicePort: 80
 ```
 2.https
+
 2.a ingress - secret
+
 unsupported
+
 2.b crd - apisixtls - secret
 create secret
 ```
@@ -66,7 +87,7 @@ spec:
     namespace: default
 ```
 
-then we can use at any apisixroute that listen the host: example.com and doesnot need extra config at route
+then we can use at any apisixroute that listen the host: example.com and doesn`t need extra config at route
 
 ```
 apiVersion: apisix.apache.org/v2
@@ -85,16 +106,15 @@ spec:
     - serviceName: httpbin
       servicePort: 80
 ```
-3.path
 
 ## 额外功能清单
-1.rewrite
-2.location deny
-3.cors
-4.proxy-body-size
-5.add_header
-6.permanent-redirect
-7.traffic-limit
+1. rewrite
+2. location deny
+3. cors
+4. proxy-body-size
+5. add_header
+6. permanent-redirect
+7. traffic-limit
 
 ### 1.rewrite
 ```
@@ -540,3 +560,9 @@ spec:
         servicePort: 80
     plugin_config_name: traffic-limit
 ```
+
+## 参考文章
+1. apisix annotation (https://apisix.apache.org/zh/docs/ingress-controller/concepts/annotations/#allow-origins)
+2. apisix plugin (https://apisix.apache.org/zh/docs/apisix/plugins/batch-requests/)
+3. apisix ingress controller - ingress (https://apisix.apache.org/zh/docs/ingress-controller/tutorials/proxy-the-httpbin-service-with-ingress/)
+4. apisix ingress controller - crd (https://apisix.apache.org/zh/docs/ingress-controller/tutorials/proxy-the-httpbin-service/)
