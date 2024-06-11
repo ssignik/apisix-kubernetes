@@ -12,7 +12,7 @@ kubectl create configmap -n ingress-apisix etcd-tls-config --from-file=ca.pem --
 ```
 ## create apisix 
 ```
-cfssl gencert -ca=ca.pem -ca-key=ca-key.pem -config=ca-config.json -profile=apisix apisix-csr.json | cfssljson  -bare etcd
+cfssl gencert -ca=ca.pem -ca-key=ca-key.pem -config=ca-config.json -profile=apisix apisix-csr.json | cfssljson  -bare apisix
 ```
 ## create apisix tls configmap
 ```
