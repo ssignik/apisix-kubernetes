@@ -3,7 +3,7 @@
 apiVersion: v1
 kind: Service
 metadata:
-  name: apisix-etcd-headless
+  name: etcd-headless
   namespace: ingress-apisix
   labels:
     app.kubernetes.io/name: apisix-etcd
