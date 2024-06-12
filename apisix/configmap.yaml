@@ -161,19 +161,12 @@ data:
           - name: "viewer"
             key: 995398bddea7a4df9af5f70095cb3e94
             role: viewer
-        https_admin: true
         
-        admin_api_mtls:             # Set this if `https_admin` is true.
-          admin_ssl_cert: "/usr/local/apisix/cert/admin/apisix.pem"        # Set path to SSL/TLS certificate.
-          admin_ssl_cert_key: "/usr/local/apisix/cert/admin/apisix-key.pem"    # Set path to SSL/TLS key.
-          admin_ssl_ca_cert: "/usr/local/apisix/cert/admin/ca.pem"     # Set path to CA certificate used to sign client certificates.
       etcd:
         host:                          # it's possible to define multiple etcd hosts addresses of the same etcd cluster.
-          - "https://apisix-etcd.ingress-apisix.svc.cluster.local:2379"
+          - "https://etcd.ingress-apisix.svc.cluster.local:2379"
         prefix: "/apisix"    # configuration prefix in etcd
         timeout: 30    # 30 seconds
         tls:
           cert: "/usr/local/apisix/cert/etcd/etcd.pem"
           key: "/usr/local/apisix/cert/etcd/etcd-key.pem"
-          verify: true
-

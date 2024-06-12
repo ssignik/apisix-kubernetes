@@ -35,7 +35,7 @@ data:
       etcd:
         prefix: "/apisix"
         endpoints:
-          - apisix-etcd:2379
+          - etcd.ingress-apisix.svc.cluster.local:2379
         mtls:
           key_file: "/usr/local/apisix-dashboard/cert/etcd-key.pem"
           cert_file: "/usr/local/apisix-dashboard/cert/etcd.pem"

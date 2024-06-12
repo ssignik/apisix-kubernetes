@@ -44,7 +44,7 @@ data:
       apisix_version: "apisix.apache.org/v2"
     apisix:
       admin_api_version: "v3"
-      default_cluster_base_url: https://apisix-admin.ingress-apisix.svc.cluster.local:9180/apisix/admin
+      default_cluster_base_url: http://apisix-admin.ingress-apisix.svc.cluster.local:9180/apisix/admin
       default_cluster_admin_key: "61908c436e12301eccb302e829d941d7"
       default_cluster_name: "default"
     
