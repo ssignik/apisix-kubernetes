@@ -9,7 +9,15 @@
                 "usages": [
                     "signing",
                     "key encipherment",
-		            "server auth",
+                    "client auth"
+                ]
+            },
+            "etcd": {
+                "expiry": "99999h",
+                "usages": [
+                    "signing",
+                    "key encipherment",
+                    "server auth",
                     "client auth"
                 ]
             }
