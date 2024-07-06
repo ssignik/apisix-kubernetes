@@ -44,7 +44,7 @@ spec:
       serviceAccountName: "default"
       containers:
         - name: etcd
-          image: docker.io/bitnami/etcd:3.5.7-debian-11-r14
+          image: swr.cn-north-4.myhuaweicloud.com/zhaoyan-gateway/etcd:3.5.14-cve
           imagePullPolicy: "IfNotPresent"
           securityContext:
             allowPrivilegeEscalation: false
@@ -77,10 +77,6 @@ spec:
               value: "/bitnami/etcd/data"
             - name: ETCD_LOG_LEVEL
               value: "info"
-            - name: ALLOW_NONE_AUTHENTICATION
-              value: "yes"
-            - name: ETCD_AUTH_TOKEN
-              value: "jwt,priv-key=/opt/bitnami/etcd/certs/token/jwt-token.pem,sign-method=RS256,ttl=10m"
             - name: ETCD_ADVERTISE_CLIENT_URLS
               value: "https://$(MY_POD_NAME).etcd-headless.ingress-apisix.svc.cluster.local:2379"
             - name: ETCD_LISTEN_CLIENT_URLS
@@ -121,45 +117,15 @@ spec:
             - name: peer
               containerPort: 2380
               protocol: TCP
-          livenessProbe:
-            exec:
-              command:
-                - /opt/bitnami/scripts/etcd/healthcheck.sh
-            initialDelaySeconds: 60
-            periodSeconds: 30
-            timeoutSeconds: 5
-            successThreshold: 1
-            failureThreshold: 5
-          readinessProbe:
-            exec:
-              command:
-                - /opt/bitnami/scripts/etcd/healthcheck.sh
-            initialDelaySeconds: 60
-            periodSeconds: 10
-            timeoutSeconds: 5
-            successThreshold: 1
-            failureThreshold: 5
-          lifecycle:
-            preStop:
-              exec:
-                command:
-                  - /opt/bitnami/scripts/etcd/prestop.sh
           resources:
             limits: {}
             requests: {}
           volumeMounts:
             - name: data
               mountPath: /bitnami/etcd
-            - name: etcd-jwt-token
-              mountPath: /opt/bitnami/etcd/certs/token/
-              readOnly: true
             - name: etcd-tls
               mountPath: /opt/bitnami/etcd/certs/
       volumes:
-        - name: etcd-jwt-token
-          secret:
-            secretName: apisix-etcd-jwt-token
-            defaultMode: 256
         - configMap:
             name: etcd-tls-config
           name: etcd-tls
