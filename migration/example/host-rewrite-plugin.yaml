@@ -1,0 +1,11 @@
+apiVersion: apisix.apache.org/v2
+kind: ApisixPluginConfig
+metadata:
+  name: host-rewrite
+spec:
+  plugins:
+  - name: proxy-rewrite
+    enable: true
+    config:
+      host: "example.com:30316"
+      regex_uri: ["(.*)","$1"]

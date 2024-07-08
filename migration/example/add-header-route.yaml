@@ -1,0 +1,16 @@
+apiVersion: apisix.apache.org/v2
+kind: ApisixRoute
+metadata:
+  name: add-header-route
+spec:
+  http:
+  - name: example
+    match:
+      hosts:
+      - example.com
+      paths:
+      - /*
+    backends:
+      - serviceName: httpbin
+        servicePort: 80
+    plugin_config_name: add-header

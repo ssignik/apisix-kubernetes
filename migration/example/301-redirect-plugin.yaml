@@ -1,0 +1,11 @@
+apiVersion: apisix.apache.org/v2
+kind: ApisixPluginConfig
+metadata:
+  name: 301-redirect
+spec:
+  plugins:
+  - name: redirect
+    enable: true
+    config:
+      uri: "$scheme://example.com:30316$request_uri"
+      ret_code: 301

@@ -1,0 +1,10 @@
+apiVersion: apisix.apache.org/v2
+kind: ApisixPluginConfig
+metadata:
+  name: rewrite-target
+spec:
+  plugins:
+  - name: proxy-rewrite
+    enable: true
+    config:
+      regex_uri: ["^/$","/ip"]

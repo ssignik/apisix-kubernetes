@@ -1,0 +1,16 @@
+---
+# Source: apisix/charts/etcd/templates/pdb.yaml
+apiVersion: policy/v1
+kind: PodDisruptionBudget
+metadata:
+  name: apisix-etcd
+  namespace: ingress-apisix
+  labels:
+    app.kubernetes.io/name: etcd
+    app.kubernetes.io/instance: apisix
+spec:
+  minAvailable: 51%
+  selector:
+    matchLabels:
+      app.kubernetes.io/name: etcd
+      app.kubernetes.io/instance: apisix

@@ -1,0 +1,24 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: apisix-admin-fixed-svc
+  namespace: ingress-apisix
+  annotations:
+  labels:
+    
+    app.kubernetes.io/name: apisix
+    app.kubernetes.io/instance: apisix
+    app.kubernetes.io/version: "3.9.1"
+    app.kubernetes.io/service: apisix-admin
+spec:
+  type: NodePort
+  ports:
+  - name: http
+    port: 80
+    targetPort: admin
+    protocol: TCP
+    nodePort: 32180
+  selector:
+    
+    app.kubernetes.io/name: apisix
+    app.kubernetes.io/instance: apisix

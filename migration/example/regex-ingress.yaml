@@ -1,0 +1,32 @@
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: regex-ingress
+  annotations:
+    k8s.apisix.apache.org/rewrite-target-regex: "/admin(/|$)(.*)"
+    k8s.apisix.apache.org/rewrite-target-regex-template: "/$2"
+spec:
+  ingressClassName: apisix
+  rules:
+    - host: example.com
+      http:
+        paths:
+          - path: /admin*
+            pathType: Prefix
+            backend:
+              service:
+                name: httpbin
+                port: 
+                  number: 80
+
+##test
+##返回404路由不匹配
+##curl -ikv --resolve "example.com:32106:192.168.49.2" "http://example.com:32106/test"
+##curl -ikv --resolve "example.com:32106:192.168.49.2" "http://example.com:32106/admin"
+##curl -ikv --resolve "example.com:32106:192.168.49.2" "http://example.com:32106/admin/v1"
+##curl -ikv --resolve "example.com:32106:192.168.49.2" "http://example.com:32106/admin/v3/a/test"
+##curl -ikv --resolve "example.com:32106:192.168.49.2" "http://example.com:32106/admin/v1/a/c"
+
+##一下正确返回IP
+##curl -ikv --resolve "example.com:32106:192.168.49.2" "http://example.com:32106/admin/v1/a1/test"
+##curl -ikv --resolve "example.com:32106:192.168.49.2" "http://example.com:32106/admin/v2/z9/test"
