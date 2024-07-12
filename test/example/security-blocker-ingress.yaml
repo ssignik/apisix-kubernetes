@@ -1,0 +1,19 @@
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: security-blocker-ingress
+  annotations:
+    k8s.apisix.apache.org/plugin-config-name: "security-blocker"
+spec:
+  ingressClassName: apisix
+  rules:
+    - host: security.blocker.com
+      http:
+        paths:
+          - path: /
+            pathType: Prefix
+            backend:
+              service:
+                name: httpbin
+                port: 
+                  number: 80

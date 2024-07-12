@@ -1,0 +1,15 @@
+apiVersion: apisix.apache.org/v2
+kind: ApisixPluginConfig
+metadata:
+  name: traffic-conn
+  namespace: ingress-apisix
+spec:
+  plugins:
+  - name: limit-conn
+    enable: true
+    config:
+      conn: 3
+      burst: 0
+      default_conn_delay: 0.1
+      key: "remote_addr"
+      rejected_msg: "Requests are too frequest, please try again later."

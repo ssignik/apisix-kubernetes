@@ -1,0 +1,14 @@
+apiVersion: apisix.apache.org/v2
+kind: ApisixPluginConfig
+metadata:
+  name: traffic-count
+  namespace: ingress-apisix
+spec:
+  plugins:
+  - name: limit-count
+    enable: true
+    config:
+      count: 2 
+      time_window: 1 
+      key: "http_x_real_ip"
+      rejected_msg: "Requests are too frequest, please try again later."

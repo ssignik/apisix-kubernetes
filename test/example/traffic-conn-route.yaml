@@ -1,0 +1,17 @@
+apiVersion: apisix.apache.org/v2
+kind: ApisixRoute
+metadata:
+  name: traffic-conn-route
+  namespace: ingress-apisix
+spec:
+  http:
+  - name: example
+    match:
+      hosts:
+      - traffic.conn.com
+      paths:
+      - /*
+    backends:
+      - serviceName: httpbin
+        servicePort: 80
+    plugin_config_name: traffic-conn

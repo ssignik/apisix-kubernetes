@@ -1,0 +1,16 @@
+apiVersion: apisix.apache.org/v2
+kind: ApisixRoute
+metadata:
+  name: base-route
+  namespace: ingress-apisix
+spec:
+  http:
+  - name: baseroute
+    match:
+      hosts:
+      - baseroute.com
+      paths:
+      - /ip
+    backends:
+      - serviceName: httpbin
+        servicePort: 80

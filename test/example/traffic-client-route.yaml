@@ -1,0 +1,17 @@
+apiVersion: apisix.apache.org/v2
+kind: ApisixRoute
+metadata:
+  name: traffic-client-route
+  namespace: ingress-apisix
+spec:
+  http:
+  - name: traffic-client
+    match:
+      hosts:
+      - traffic.client.com
+      paths:
+      - /*
+    backends:
+      - serviceName: httpbin
+        servicePort: 80
+    plugin_config_name: traffic-client

@@ -1,0 +1,14 @@
+apiVersion: apisix.apache.org/v2
+kind: ApisixPluginConfig
+metadata:
+  name: traffic-req
+  namespace: ingress-apisix
+spec:
+  plugins:
+  - name: limit-req
+    enable: true
+    config:
+      rate: 2 
+      burst: 0 
+      key: "remote_addr"
+      rejected_msg: "Requests are too frequest, please try again later."

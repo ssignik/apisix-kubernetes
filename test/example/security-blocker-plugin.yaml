@@ -1,0 +1,11 @@
+apiVersion: apisix.apache.org/v2
+kind: ApisixPluginConfig
+metadata:
+  name: security-blocker
+spec:
+  plugins:
+  - name: uri-blocker
+    enable: true
+    config:
+      block_rules: ["^/ip"]
+      rejected_code: 500

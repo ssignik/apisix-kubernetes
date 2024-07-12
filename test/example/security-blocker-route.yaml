@@ -1,0 +1,16 @@
+apiVersion: apisix.apache.org/v2
+kind: ApisixRoute
+metadata:
+  name: security-blocker-route
+spec:
+  http:
+  - name: blocker
+    match:
+      hosts:
+      - security.blocker.com
+      paths:
+      - /*
+    backends:
+      - serviceName: httpbin
+        servicePort: 80
+    plugin_config_name: security-blocker

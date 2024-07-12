@@ -1,0 +1,20 @@
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: auth-oidc-ingress
+  namespace: ingress-apisix
+  annotations:
+    k8s.apisix.apache.org/plugin-config-name: "auth-oidc"
+spec:
+  ingressClassName: apisix
+  rules:
+    - host: local.httpbin.org
+      http:
+        paths:
+          - path: /
+            pathType: Prefix
+            backend:
+              service:
+                name: httpbin
+                port: 
+                  number: 80

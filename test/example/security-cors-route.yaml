@@ -1,0 +1,17 @@
+apiVersion: apisix.apache.org/v2
+kind: ApisixRoute
+metadata:
+  name: security-cors-route
+  namespace: ingress-apisix
+spec:
+  http:
+  - name: security-cors
+    match:
+      hosts:
+      - security.cors.com
+      paths:
+      - /openid-configuration
+    backends:
+      - serviceName: nginx
+        servicePort: 80
+    plugin_config_name: security-cors

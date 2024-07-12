@@ -1,0 +1,11 @@
+apiVersion: apisix.apache.org/v2
+	kind: ApisixTls
+	metadata:
+	  name: local-httpbin-tls
+	  namespace: ingress-apisix
+	spec:
+	  hosts:
+	    - local.httpbin.org
+	  secret:
+	    name: local-httpbin-secret
+	    namespace: ingress-apisix

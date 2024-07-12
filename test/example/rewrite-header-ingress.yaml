@@ -1,0 +1,20 @@
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: rewrite-header-ingress
+  namespace: ingress-apisix
+  annotations:
+    k8s.apisix.apache.org/plugin-config-name: "rewrite-header"
+spec:
+  ingressClassName: apisix
+  rules:
+    - host: rewrite.header.com
+      http:
+        paths:
+          - path: /headers
+            pathType: Prefix
+            backend:
+              service:
+                name: httpbin
+                port: 
+                  number: 80

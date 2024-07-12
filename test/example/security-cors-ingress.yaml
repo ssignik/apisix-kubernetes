@@ -1,0 +1,20 @@
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: security-cors-ingress
+  namespace: ingress-apisix
+  annotations:
+    k8s.apisix.apache.org/plugin-config-name: "security-cors"
+spec:
+  ingressClassName: apisix
+  rules:
+    - host: security.cors.com
+      http:
+        paths:
+          - path: /openid-configuration
+            pathType: Prefix
+            backend:
+              service:
+                name: nginx
+                port: 
+                  number: 80

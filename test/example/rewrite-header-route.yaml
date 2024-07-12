@@ -1,0 +1,17 @@
+apiVersion: apisix.apache.org/v2
+kind: ApisixRoute
+metadata:
+  name: rewrite-header-route
+  namespace: ingress-apisix
+spec:
+  http:
+  - name: rewrite-header
+    match:
+      hosts:
+      - rewrite.header.com
+      paths:
+      - /headers
+    backends:
+      - serviceName: httpbin
+        servicePort: 80
+    plugin_config_name: rewrite-header

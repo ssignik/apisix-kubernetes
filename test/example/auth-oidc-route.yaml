@@ -1,0 +1,17 @@
+apiVersion: apisix.apache.org/v2
+kind: ApisixRoute
+metadata:
+  name: auth-oidc-route
+  namespace: ingress-apisix
+spec:
+  http:
+  - name: auth-oidc
+    match:
+      hosts:
+      - local.httpbin.org
+      paths:
+      - /*
+    backends:
+      - serviceName: httpbin
+        servicePort: 80
+    plugin_config_name: auth-oidc

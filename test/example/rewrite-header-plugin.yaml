@@ -1,0 +1,22 @@
+apiVersion: apisix.apache.org/v2
+kind: ApisixPluginConfig
+metadata:
+  name: rewrite-header
+  namespace: ingress-apisix
+spec:
+  plugins:
+  - name: proxy-rewrite
+    enable: true
+    config:
+      headers: {
+        "add": {
+          "Cache-Control": "no-cache",
+          "customer": "add-header "
+        },
+        "set": {
+          "User-Agent": "Mozilla/5.0"
+        },
+        "remove":[
+          "Accept"
+        ]
+      }

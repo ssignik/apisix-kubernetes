@@ -74,7 +74,7 @@ spec:
             - name: ETCD_NAME
               value: "$(MY_POD_NAME)"
             - name: ETCD_DATA_DIR
-              value: "/bitnami/etcd/data"
+              value: "/opt/bitnami/etcd/data"
             - name: ETCD_LOG_LEVEL
               value: "info"
             - name: ETCD_ADVERTISE_CLIENT_URLS
@@ -122,7 +122,7 @@ spec:
             requests: {}
           volumeMounts:
             - name: data
-              mountPath: /bitnami/etcd
+              mountPath: /opt/bitnami/etcd/data
             - name: etcd-tls
               mountPath: /opt/bitnami/etcd/certs/
       volumes:

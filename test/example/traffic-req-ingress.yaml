@@ -1,0 +1,20 @@
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: traffic-req-ingress
+  namespace: ingress-apisix
+  annotations:
+    k8s.apisix.apache.org/plugin-config-name: "traffic-req"
+spec:
+  ingressClassName: apisix
+  rules:
+    - host: traffic.req.com
+      http:
+        paths:
+          - path: /
+            pathType: Prefix
+            backend:
+              service:
+                name: httpbin
+                port: 
+                  number: 80

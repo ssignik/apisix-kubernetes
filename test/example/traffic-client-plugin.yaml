@@ -1,0 +1,11 @@
+apiVersion: apisix.apache.org/v2
+kind: ApisixPluginConfig
+metadata:
+  name: traffic-client
+  namespace: ingress-apisix
+spec:
+  plugins:
+  - name: client-control
+    enable: true
+    config:
+      max_body_size: 1

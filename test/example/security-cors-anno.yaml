@@ -1,0 +1,17 @@
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: base-ingress
+spec:
+  ingressClassName: apisix
+  rules:
+    - host: security.cors.com
+      http:
+        paths:
+          - path: /openid-configuration
+            pathType: Prefix
+            backend:
+              service:
+                name: nginx
+                port: 
+                  number: 80
