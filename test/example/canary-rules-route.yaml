@@ -1,0 +1,38 @@
+apiVersion: apisix.apache.org/v2
+kind: ApisixRoute
+metadata:
+  name: canary-rules-route
+  namespace: ingress-apisix
+spec:
+  http:
+  - name: rule1
+    priority: 1
+    match:
+      hosts:
+      - canary.rules.com
+      paths:
+      - /version
+    backends:
+      - serviceName: canary-v1
+        servicePort: 8080
+  - name: rule2
+    priority: 2
+    match:
+      hosts:
+      - canary.rules.com
+      paths:
+      - /version
+      exprs:
+        - subject:
+            scope: Query
+            name: id
+          op: LessThan
+          value: "123"
+        - subject:
+            scope: Header
+            name: version
+          op: RegexMatch
+          value: "v2"
+    backends:
+      - serviceName: canary-v2
+        servicePort: 8080

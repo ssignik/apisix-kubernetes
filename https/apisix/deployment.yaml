@@ -43,7 +43,7 @@ spec:
     spec:
       containers:
         - name: apisix
-          image: "swr.cn-north-4.myhuaweicloud.com/zhaoyan-gateway/apisix:3.9.1-rpm-cve"
+          image: "swr.cn-north-4.myhuaweicloud.com/zhaoyan-gateway/apisix:3.9.1-nonroot"
           imagePullPolicy: IfNotPresent
           env:
 

@@ -11,7 +11,7 @@
 	kubectl apply -f nginx.yaml
 	```
 	2. httpbin
-	创建目录：nginx
+	创建目录：httpbin
 	```
 	kubectl apply -f httpbin.yaml
 	// Demo官网https://httpbin.org/，以下可用于测试
@@ -19,6 +19,33 @@
 	// /get 获取请求信息，样例：https://httpbin.org/get
 	// /headers 获取请求头信息，样例：https://httpbin.org/headers
 	// /response-headers 获取响应头信息，样例：https://httpbin.org/response-headers
+	```
+	3. canary
+	创建目录:go
+	```
+	// 该demo用于灰度发布测试
+	// canary-v1.go/cancary-v2.go 为demo代码，可自定义内容
+	// 根据Dockerfile分别创建v1-v2的镜像
+	// 进入构建目录,创建v1镜像
+	cp canary-v1.go canary-demo.go
+	docker build -t canary-demo:v1 .
+	// 创建v2镜像
+	cp canary-v2.go canary-demo.go
+	docker build -t canary-demo:v2 .
+	// 部署
+	// docker
+	docker run -p 8080:8080 canary-demo:v1
+	docker run -p 8080:8080 canary-demo:v2
+	// k8s
+	kubectl apply -f cancary-v1.yaml
+	kubectl apply -f cancary-v2.yaml
+	// 测试
+	// 版本v1
+	请求：/version 
+	响应："Hello, Version 1!"
+	// 版本v2
+	请求：/version 
+	响应："Hello, Version 2!"
 	```
 4. 准备测试域名及匹配证书
 	域名准备列表
@@ -157,12 +184,18 @@
 		<td>traffic-conn-ingress.yaml</td>
 	</tr>
 	<tr>
-		<td rowspan="2">集中认证</td><td rowspan="2">OIDC</td><td>auth-oidc-plugin.yaml</td><td rowspan="2">auth-oidc-test-case.md</td>
+		<td rowspan="3">集中认证</td><td rowspan="3">OIDC</td><td>auth-oidc-plugin.yaml</td><td rowspan="3">auth-oidc-test-case.md</td>
 	</tr>
 	<tr>
 		<td>auth-oidc-route.yaml</td>
 	</tr>
 	<tr>
 		<td>auth-oidc-ingress.yaml</td>
+	</tr>
+	<tr>
+		<td rowspan="2" colspan="2">灰度发布</td><td>canary-weight-route.yaml</td><td rowspan="2">canary-release-test-case.md</td>
+	</tr>
+	<tr>
+		<td>canary-rules-route.yaml</td>
 	</tr>
 </table>

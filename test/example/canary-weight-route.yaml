@@ -1,0 +1,21 @@
+apiVersion: apisix.apache.org/v2
+kind: ApisixRoute
+metadata:
+  name: canary-weight-route
+  namespace: ingress-apisix
+spec:
+  http:
+  - name: rule1
+    priority: 1
+    match:
+      hosts:
+      - canary.weight.com
+      paths:
+      - /version
+    backends:
+      - serviceName: canary-v1
+        servicePort: 8080
+        weight: 10
+      - serviceName: canary-v2
+        servicePort: 8080
+        weight: 5

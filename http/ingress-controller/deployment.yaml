@@ -74,7 +74,7 @@ spec:
             - /ingress-apisix/conf/config.yaml
           securityContext:
             {}
-          image: "apache/apisix-ingress-controller:1.8.0"
+          image: "swr.cn-north-4.myhuaweicloud.com/zhaoyan-gateway/apisix-ingress-controller:1.8.2-nonroot"
           imagePullPolicy: IfNotPresent
           ports:
             - name: http

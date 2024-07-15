@@ -1,0 +1,41 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: canary-v2-deployment
+  namespace: ingress-apisix
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: canary-v2-deployment
+  template:
+    metadata:
+      labels:
+        app: canary-v2-deployment
+    spec:
+      containers:
+        - name: canary-v2
+          image: canary-demo:v2
+          ports:
+            - name: http
+              containerPort: 8080
+              protocol: TCP
+
+---
+
+apiVersion: v1
+kind: Service
+metadata:
+  name: canary-v2
+  namespace: ingress-apisix
+  labels:
+   app: canary-v2-deployment
+spec:
+  type: ClusterIP
+  ports:
+    - port: 8080
+      targetPort: http
+      protocol: TCP
+      name: http
+  selector:
+    app: canary-v2-deployment

@@ -21,6 +21,5 @@ bases:
   - ./service-headless.yaml
   - ./service.yaml
   # - ./token-secrets.yaml
-  - ./statefulset-tls.yaml
-  # - ./statefulset.yaml
+  - ./statefulset.yaml
   - ./pdb.yaml

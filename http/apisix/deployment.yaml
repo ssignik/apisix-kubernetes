@@ -43,7 +43,7 @@ spec:
     spec:
       containers:
         - name: apisix
-          image: "apache/apisix:3.9.1-debian"
+          image: "swr.cn-north-4.myhuaweicloud.com/zhaoyan-gateway/apisix:3.9.1-nonroot"
           imagePullPolicy: IfNotPresent
           env:
 

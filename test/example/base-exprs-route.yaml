@@ -1,0 +1,27 @@
+apiVersion: apisix.apache.org/v2
+kind: ApisixRoute
+metadata:
+  name: base-exprs-route
+  namespace: ingress-apisix
+spec:
+  http:
+  - name: rules
+    match:
+      hosts:
+      - baseroute.com
+      paths:
+      - /get
+      exprs:
+        - subject:
+            scope: Query
+            name: id
+          op: Equal
+          value: "123"
+        - subject:
+            scope: Header
+            name: name
+          op: RegexMatch
+          value: "json"
+    backends:
+      - serviceName: httpbin
+        servicePort: 80

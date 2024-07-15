@@ -49,7 +49,7 @@ spec:
         - name: apisix-dashboard
           securityContext:
             {}
-          image: "apache/apisix-dashboard:3.0.0-alpine"
+          image: "swr.cn-north-4.myhuaweicloud.com/zhaoyan-gateway/apisix-dashboard:3.0.1-nonroot"
           imagePullPolicy: IfNotPresent
           ports:
             - name: http

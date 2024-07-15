@@ -44,7 +44,7 @@ spec:
       serviceAccountName: "default"
       containers:
         - name: apisix-etcd
-          image: docker.io/bitnami/etcd:3.5.7-debian-11-r14
+          image: swr.cn-north-4.myhuaweicloud.com/zhaoyan-gateway/etcd:3.5.14-nonroot
           imagePullPolicy: "IfNotPresent"
           securityContext:
             allowPrivilegeEscalation: false
