@@ -6,10 +6,15 @@ APISIX构建于 NGINX + ngx_lua 的技术基础之上
 ![1713250218769_image](https://github.com/user-attachments/assets/44280c2e-aa56-49ec-874e-22c24c11c8e5)
 
 ## 组件
+
 APISIX：网关核心
+
 Dashboard：控制面UI
-Ingress Controller：Kubernetes原生Ingress实现
+
+Ingress Controller：Kubernetes原生Ingress资源监听器
+
 ETCD： 数据存储
+
 ## 构建
 apisix需要先构建rpm包，查看[shell脚本](https://github.com/opensourceways/apisix-build-tools)
 示例：基于openeuler，选择cve修复分支创建
