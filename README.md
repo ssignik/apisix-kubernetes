@@ -3,6 +3,7 @@
 APISIX 是 Apache 软件基金会下的项目。它是一个具有动态、实时、高性能等特点的云原生 API 网关，它提供了动态路由、动态上游、动态证书、A/B 测试、灰度发布（金丝雀发布）、蓝绿部署、限速、防攻击、收集指标、监控报警、可观测、服务治理等功能。
 APISIX构建于 NGINX + ngx_lua 的技术基础之上
 ## 架构
+![1713250218769_image](https://github.com/user-attachments/assets/44280c2e-aa56-49ec-874e-22c24c11c8e5)
 
 ## 组件
 APISIX：网关核心
